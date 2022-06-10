@@ -92,11 +92,12 @@ func main() {
 
     router.GET("/pessoas", getPessoas)
     router.GET("/pessoas/:id", getpessoaByID)
+    //router.GET("pessoas/:id/tarefas", getPessoaByIDTarefa)
     router.POST("/pessoas", postpessoas)
     router.DELETE("/pessoas/:id", deletePessoaById)
     router.PUT("/pessoas/:id", updatePessoaById)
 
-    router.Run("localhost:8080")
+    router.Run("localhost:2828")
 }
 
 // getprojetos/Pessoas/Equipes responds with the list of all projetos as JSON.
@@ -382,3 +383,30 @@ func postTarefaProjeto(c *gin.Context){
 		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "tarefa not found"})
 	}
 }
+/*
+func getPessoaByIDTarefa2(c *gin.Context){
+    id := c.Param("id")
+	count := 0
+    var p_idTarefa pessoas
+	for _, a := range pessoas {
+		if a.ID_Pessoa == id {
+			c.IndentedJSON(http.StatusOK, a)
+            //idpessoa = a.ID_Pessoa
+			count+=1
+            p_idtarefa = a.ID_Tarefa 
+
+            for _, b := range tarefas {
+                if b.ID_Tarefa == p_idTarefa {
+                    c.IndentedJSON(http.StatusOK, b)
+                    count+=1
+                }
+		}
+        
+	}
+	if(count > 2){
+		return
+	} else{
+		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "tarefa not found"})
+	}
+}
+*/
